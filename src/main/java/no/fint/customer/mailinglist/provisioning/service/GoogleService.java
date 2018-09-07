@@ -13,6 +13,7 @@ import no.fint.customer.mailinglist.provisioning.Props;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
@@ -31,6 +32,7 @@ public class GoogleService {
 
         HttpTransport httpTransport = new NetHttpTransport();
         JacksonFactory jsonFactory = new JacksonFactory();
+        /*
 
         return new GoogleCredential.Builder()
                 .setTransport(httpTransport)
@@ -40,6 +42,21 @@ public class GoogleService {
                 .setServiceAccountUser(props.getServiceAccountUser())
                 .setServiceAccountPrivateKeyFromP12File(
                         new java.io.File(props.getCredentialsFilePath()))
+                .build();
+                */
+
+        FileInputStream stream = new FileInputStream(props.getCredentialsFilePath());
+        GoogleCredential googleCredential = GoogleCredential
+                .fromStream(stream, httpTransport, jsonFactory)
+                .createScoped(SCOPES);
+
+        return new GoogleCredential.Builder()
+                .setTransport(googleCredential.getTransport())
+                .setJsonFactory(googleCredential.getJsonFactory())
+                .setServiceAccountId(googleCredential.getServiceAccountId())
+                .setServiceAccountUser(props.getServiceAccountUser())
+                .setServiceAccountPrivateKey(googleCredential.getServiceAccountPrivateKey())
+                .setServiceAccountScopes(googleCredential.getServiceAccountScopes())
                 .build();
 
     }
