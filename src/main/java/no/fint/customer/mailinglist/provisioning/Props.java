@@ -11,9 +11,6 @@ public class Props {
     @Value("${fint.customer.mailinglist.provisioning.credentials:creds.p12}")
     private String credentialsFilePath;
 
-    @Value("${fint.customer.mailinglist.provisioning.tokens-directory-path:tokens}")
-    private String tokensDirectoryPath = "tokens";
-
     @Value("${fint.customer.mailinglist.provisioning.app-name:FINT customer mailing list provisioning}")
     private String applicationName;
 
