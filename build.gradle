@@ -1,0 +1,48 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'no.fint'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+    repositories {
+        maven {
+            url "http://dl.bintray.com/fint/maven"
+        }
+    }
+}
+
+
+dependencies {
+    compile('com.google.api-client:google-api-client:1.20.0')
+    compile('com.google.apis:google-api-services-admin-directory:directory_v1-rev53-1.20.0')
+
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+    compile('com.google.oauth-client:google-oauth-client-jetty:1.25.0') {
+        exclude group:'javax.servlet'
+    }
+
+    compile('no.fint:fint-portal-api:3.1.1')
+
+
+    compileOnly('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
