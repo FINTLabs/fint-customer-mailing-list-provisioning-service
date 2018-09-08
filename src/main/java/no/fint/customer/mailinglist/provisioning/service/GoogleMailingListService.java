@@ -20,6 +20,7 @@ public class GoogleMailingListService {
 
     @Autowired
     private GoogleService googleService;
+
     @Autowired
     private Props props;
 

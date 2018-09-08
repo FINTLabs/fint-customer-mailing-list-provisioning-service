@@ -28,22 +28,10 @@ public class GoogleService {
     @Autowired
     private Props props;
 
-    private Credential getCredentials() throws GeneralSecurityException, IOException {
+    private Credential getCredentials() throws IOException {
 
         HttpTransport httpTransport = new NetHttpTransport();
         JacksonFactory jsonFactory = new JacksonFactory();
-        /*
-
-        return new GoogleCredential.Builder()
-                .setTransport(httpTransport)
-                .setJsonFactory(jsonFactory)
-                .setServiceAccountId(props.getServiceAccountEmail())
-                .setServiceAccountScopes(SCOPES)
-                .setServiceAccountUser(props.getServiceAccountUser())
-                .setServiceAccountPrivateKeyFromP12File(
-                        new java.io.File(props.getCredentialsFilePath()))
-                .build();
-                */
 
         FileInputStream stream = new FileInputStream(props.getCredentialsFilePath());
         GoogleCredential googleCredential = GoogleCredential

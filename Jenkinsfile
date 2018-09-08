@@ -14,7 +14,7 @@ pipeline {
                     sh "docker push 'dtr.fintlabs.no/beta/customer-mailing-list-provisioning-service:latest'"
                 }
                 withDockerServer([credentialsId: "ucp-fintlabs-jenkins-bundle", uri: "tcp://ucp.fintlabs.no:443"]) {
-                     //sh "docker service update customer-portal_customer-mailing-list-provisioning-service --image dtr.fintlabs.no/beta/customer-mailing-list-provisioning-service:latest --detach=false"
+                     sh "docker service update customer-portal_customer-mailing-list-provisioning-service --image dtr.fintlabs.no/beta/customer-mailing-list-provisioning-service:latest --detach=false"
                 }
             }
         }
