@@ -13,3 +13,4 @@ Service to provisioning contacts for customer services to Google Apps mailing li
 | fint.customer.mailinglist.provisioning.interval              | Interval for provisioning in milliseconds.                                       | 50000                                    |
 
 See [fint-portal-api](https://github.com/FINTLabs/fint-portal-api) for portal api config.
+
