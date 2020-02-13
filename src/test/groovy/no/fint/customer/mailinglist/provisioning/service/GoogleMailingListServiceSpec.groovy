@@ -15,7 +15,7 @@ class GoogleMailingListServiceSpec extends Specification {
     private List<Member> members
 
     void setup() {
-        props = new Props(credentialsFilePath: "file", applicationName: "test", serviceAccountEmail: "test",
+        props = new Props(credentialsFilePath: "file", applicationName: "test",
                 serviceAccountUser: "test", mailingList: "test")
         googleService = Mock(GoogleService)
         googleMailingListService = new GoogleMailingListService(googleService: googleService, props: props)
