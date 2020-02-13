@@ -1,0 +1,36 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  labels:
+    app: customer-mailing-list-provisioning-service
+  name: customer-mailing-list-provisioning-service
+spec:
+  selector:
+    matchLabels:
+      app: customer-mailing-list-provisioning-service
+  template:
+    metadata:
+      labels:
+        app: customer-mailing-list-provisioning-service
+    spec:
+      volumes:
+        - name: credentials
+          secret:
+            secretName: google-service-account-groups
+      containers:
+        - name: customer-mailing-list-provisioning-service
+          image: fintlabs.azurecr.io/customer-mailing-list-provisioning-service:0.1.0
+          volumeMounts:
+            - name: credentials
+              mountPath: /credentials
+          envFrom:
+            - configMapRef:
+                name: fint-environment
+            - secretRef:
+                name: fint-portal-user
+          env:
+            - {name: fint.customer.mailinglist.provisioning.mailing-list, value: 'kunde-kontakter@fintlabs.no'}
+            - {name: fint.customer.mailinglist.provisioning.service-account-user, value: 'frode@fintlabs.no'}
+            - {name: fint.customer.mailinglist.provisioning.credentials, value: '/credentials/creds.json'}
+            - {name: fint.customer.mailinglist.provisioning.interval, value: '3600000'}
+            - {name: fint.customer.mailinglist.provisioning.service-account-email, value: 'dummy'}

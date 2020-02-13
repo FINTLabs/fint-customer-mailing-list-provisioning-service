@@ -14,9 +14,6 @@ public class Props {
     @Value("${fint.customer.mailinglist.provisioning.app-name:FINT customer mailing list provisioning}")
     private String applicationName;
 
-    @Value("${fint.customer.mailinglist.provisioning.service-account-email}")
-    private String serviceAccountEmail;
-
     @Value("${fint.customer.mailinglist.provisioning.service-account-user}")
     private String serviceAccountUser;
 
